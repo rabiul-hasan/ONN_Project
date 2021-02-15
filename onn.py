@@ -180,8 +180,8 @@ class Net(torch.nn.Module):
             xp = torch.stack((xp_real, xp_imag), dim=-1)
             xn = torch.stack((xn_real, xn_imag), dim=-1)
 
-            xf = self.last_diffractive_layer(xp)
-            xr = self.last_diffractive_layer(xn)
+            xf,xr = self.last_diffractive_layer(xp,xn)
+            #xr = self.last_diffractive_layer(xn)
 
             return xf, xr
         # x_abs (batch, 200, 200)
