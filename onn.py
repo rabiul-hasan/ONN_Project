@@ -186,6 +186,8 @@ class Net(torch.nn.Module):
             # xn = torch.stack((xn_real, xn_imag), dim=-1)
 
             xp_real = (a.real * tempf.real - a.imag * tempf.imag) + (b.real * tempr.real - b.imag * tempr.imag)
+            print(xp_real.shape, "shape of xp_real")
+            
             xp_imag = (a.real * tempf.imag + a.imag * tempf.real) + (b.real * tempr.imag + b.imag * tempr.real)
 
             xn_real = (c.real * tempf.real - c.imag * tempf.imag) + (d.real * tempr.real - d.imag * tempr.imag)
