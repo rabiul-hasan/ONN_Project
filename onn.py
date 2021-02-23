@@ -217,6 +217,7 @@ class Net(torch.nn.Module):
         # c, d = self.model(torch.zeros((200, 200, 2, 2)), torch.ones((200, 200, 2)))
 
         yf = torch.matmul(a, xf) - torch.matmul(torch.div(torch.matmul(b, c), d), xf)
+        print(yf.shape, "shape of yf")
 
         yf_abs = torch.sqrt(yf[..., 0] * yf[..., 0] + yf[..., 1] * yf[..., 1])
 
