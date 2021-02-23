@@ -124,8 +124,8 @@ class Net(torch.nn.Module):
             print('*' *100)
             #print(tempf.shape, tempf.item())
 
-            tempf = tempf.type(torch.complex64)
-            tempr = tempr.type(torch.complex64)
+            #tempf = tempf.type(torch.complex64)
+            #tempr = tempr.type(torch.complex64)
 
 
             t = (self.ns - self.na) / (self.ns + self.na)
@@ -157,19 +157,19 @@ class Net(torch.nn.Module):
             t_matrix = multi_dot([matrix_r, matrix_m, matrix_t])
 
             a = t_matrix.item(0, 0)
-            a = a.type(torch.complex64)
+            #a = a.type(torch.complex64)
             print(a.shape, "shape of a")
 
             b = t_matrix.item(0, 1)
-            b = b.type(torch.complex64)
+            #b = b.type(torch.complex64)
             print(b.shape, "shape of b")
 
             c = t_matrix.item(1, 0)
-            c = c.type(torch.complex64)
+            #c = c.type(torch.complex64)
             print(c.shape, "shape of c")
 
             d = t_matrix.item(1, 1)
-            d = d.type(torch.complex64)
+            #d = d.type(torch.complex64)
             print(d.shape, "shape of d")
 
             # t = (1 - self.gamma ** 2) * exp_j_phase
