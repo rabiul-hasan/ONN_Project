@@ -50,8 +50,8 @@ class DiffractiveLayer(torch.nn.Module):
         tempf = torch.fft(wavesf, signal_ndim=2)
         tempr = torch.fft(wavesr, signal_ndim=2)
         
-        tempf.shape()
-        tempr.shape()
+        print(tempf.shape, "shape of the tempf in first forward")
+       
    
         
         kf_space_real = self.hf[..., 0] * tempf[..., 0] - self.hf[..., 1] * tempf[..., 1]
@@ -119,6 +119,10 @@ class Net(torch.nn.Module):
 
         for index, layer in enumerate(self.diffractive_layers):
             (tempf, tempr) = layer(xf, xr)
+            print('*'*100)
+            #print(tempf)
+            print('*' *100)
+            print(tempf.shape, tempf.item())
 
             tempf = tempf.type(torch.complex64)
             tempr = tempr.type(torch.complex64)
@@ -129,6 +133,7 @@ class Net(torch.nn.Module):
 
             exp_jp_phase = torch.stack((torch.cos(self.phase[index]), torch.sin(self.phase[index])), dim=-1)
             exp_jn_phase = torch.stack((torch.cos(self.phase[index]), -torch.sin(self.phase[index])), dim=-1)
+            print(exp_jn_phase.shape, "shape of exp_phase")
 
             x = np.divide(1, t)
             y = np.divide(r, t)
@@ -192,7 +197,7 @@ class Net(torch.nn.Module):
             xf,xr = self.last_diffractive_layer(xp,xn)
             #xr = self.last_diffractive_layer(xn)
             
-            xf.shape()
+            print(xf.shape, "shape of xf")
 
             return xf, xr
         # x_abs (batch, 200, 200)
