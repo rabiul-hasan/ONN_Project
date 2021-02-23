@@ -157,19 +157,19 @@ class Net(torch.nn.Module):
 
             a = t_matrix.item(0, 0)
             a = a.type(torch.complex64)
-            a.shape()
+            print(a.shape, "shape of a")
 
             b = t_matrix.item(0, 1)
             b = b.type(torch.complex64)
-            b.shape()
+            print(b.shape, "shape of b")
 
             c = t_matrix.item(1, 0)
             c = c.type(torch.complex64)
-            c.shape
+            print(a.shape, "shape of c")
 
             d = t_matrix.item(1, 1)
             d = d.type(torch.complex64)
-            d.shape()
+            print(d.shape, "shape of d")
 
             # t = (1 - self.gamma ** 2) * exp_j_phase
             # r = self.gamma * (1-2*exp_j_phase)
