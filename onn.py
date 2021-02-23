@@ -138,6 +138,7 @@ class Net(torch.nn.Module):
             x = np.divide(1, t)
             y = np.divide(r, t)
             w = np.divide(r, t)
+            print(w.shape, "shape of w")
             z = np.divide(1, t)
             matrix_r = np.array([[x, y], [w, z]])  # Transfer matrix associated with starting interface
 
@@ -165,7 +166,7 @@ class Net(torch.nn.Module):
 
             c = t_matrix.item(1, 0)
             c = c.type(torch.complex64)
-            print(a.shape, "shape of c")
+            print(c.shape, "shape of c")
 
             d = t_matrix.item(1, 1)
             d = d.type(torch.complex64)
