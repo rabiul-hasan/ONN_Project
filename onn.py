@@ -186,13 +186,13 @@ class Net(torch.nn.Module):
             # xp = torch.stack((xp_real, xp_imag), dim=-1)
             # xn = torch.stack((xn_real, xn_imag), dim=-1)
 
-            xp_real = (a.real * tempf.real - a.imag * tempf.imag) + (b.real * tempr.real - b.imag * tempr.imag)
+            xp_real = (a[..., 0] * tempf[..., 0] - a[..., 1]* tempf[..., 1]) + (b[..., 0] * tempr[..., 0] - b[..., 1] * tempr[..., 1])
             print(xp_real.shape, "shape of xp_real")
             
-            xp_imag = (a.real * tempf.imag + a.imag * tempf.real) + (b.real * tempr.imag + b.imag * tempr.real)
+            xp_imag = (a[..., 0]* tempf[..., 1] + a[..., 1] * tempf[..., 0]) + (b[..., 0] * tempr[..., 1] + b[..., 1] * tempr[..., 0])
 
-            xn_real = (c.real * tempf.real - c.imag * tempf.imag) + (d.real * tempr.real - d.imag * tempr.imag)
-            xn_imag = (c.real * tempf.imag + c.imag * tempf.real) + (d.real * tempr.imag + d.imag * tempr.real)
+            xn_real = (c[..., 0] * tempf[..., 0] - c[..., 1] * tempf[..., 1]) + (d[..., 0] * tempr[..., 0] - d[..., 1]* tempr[..., 1])
+            xn_imag = (c[..., 0] * tempf[..., 1] + c[..., 1] * tempf[..., 0]) + (d[..., 0] * tempr[..., 1] + d[..., 1] * tempr[..., 0])
 
             xp = torch.stack((xp_real, xp_imag), dim=-1)
             
