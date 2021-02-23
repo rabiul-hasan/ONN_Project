@@ -194,6 +194,8 @@ class Net(torch.nn.Module):
             xn_imag = (c.real * tempf.imag + c.imag * tempf.real) + (d.real * tempr.imag + d.imag * tempr.real)
 
             xp = torch.stack((xp_real, xp_imag), dim=-1)
+            
+            print(xp.shape, "shape of xp")
             xn = torch.stack((xn_real, xn_imag), dim=-1)
 
             xf,xr = self.last_diffractive_layer(xp,xn)
