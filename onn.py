@@ -133,8 +133,8 @@ class Net(torch.nn.Module):
 
             exp_jp_phase = torch.stack((torch.cos(self.phase[index]), torch.sin(self.phase[index])), dim=-1)
             exp_jn_phase = torch.stack((torch.cos(self.phase[index]), -torch.sin(self.phase[index])), dim=-1)
-            exp_jp_phase = exp_jp_phase.detach().numpy()
-            exp_jn_phase = exp_jn_phase.detach().numpy()
+            #exp_jp_phase = exp_jp_phase.detach().numpy()
+            #exp_jn_phase = exp_jn_phase.detach().numpy()
             
             #print(exp_jn_phase.shape, "shape of exp_phase")
 
@@ -159,7 +159,7 @@ class Net(torch.nn.Module):
             matrix_m = np.array([[t11, t12], [t21, t22]])  # Transfer matrix associated to the layer between interfaces
 
             t_matrix = multi_dot([matrix_r, matrix_m, matrix_t])
-            t_matrix = torch.from_numpy(t_matrix)
+            #t_matrix = torch.from_numpy(t_matrix)
 
             a = t_matrix.item(0, 0)
             #a = a.type(torch.complex64)
