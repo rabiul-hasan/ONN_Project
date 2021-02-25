@@ -159,7 +159,7 @@ class Net(torch.nn.Module):
             matrix_m = np.array([[t11, t12], [t21, t22]])  # Transfer matrix associated to the layer between interfaces
 
             t_matrix = multi_dot([matrix_r, matrix_m, matrix_t])
-            #t_matrix = torch.from_numpy(t_matrix)
+            t_matrix = torch.from_numpy(t_matrix)
 
             a = t_matrix.item(0, 0)
             #a = a.type(torch.complex64)
