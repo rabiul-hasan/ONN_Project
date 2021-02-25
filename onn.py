@@ -50,7 +50,7 @@ class DiffractiveLayer(torch.nn.Module):
         tempf = torch.fft(wavesf, signal_ndim=2)
         tempr = torch.fft(wavesr, signal_ndim=2)
         
-        print(tempf.shape, "shape of the tempf in first forward")
+        #print(tempf.shape, "shape of the tempf in first forward")
        
    
         
@@ -119,9 +119,9 @@ class Net(torch.nn.Module):
 
         for index, layer in enumerate(self.diffractive_layers):
             (tempf, tempr) = layer(xf, xr)
-            print('*'*100)
-            print(tempf.shape,"tempf in the model")
-            print('*' *100)
+            #print('*'*100)
+            #print(tempf.shape,"tempf in the model")
+            #print('*' *100)
             #print(tempf.shape, tempf.item())
 
             #tempf = tempf.type(torch.complex64)
@@ -155,22 +155,23 @@ class Net(torch.nn.Module):
             matrix_m = np.array([[t11, t12], [t21, t22]])  # Transfer matrix associated to the layer between interfaces
 
             t_matrix = multi_dot([matrix_r, matrix_m, matrix_t])
+            t_matrix = torch.from_numpy(t_matrix)
 
             a = t_matrix.item(0, 0)
             #a = a.type(torch.complex64)
-            print(a.shape, "shape of a")
+            #print(a.shape, "shape of a")
 
             b = t_matrix.item(0, 1)
             #b = b.type(torch.complex64)
-            print(b.shape, "shape of b")
+            #print(b.shape, "shape of b")
 
             c = t_matrix.item(1, 0)
             #c = c.type(torch.complex64)
-            print(c.shape, "shape of c")
+            #print(c.shape, "shape of c")
 
             d = t_matrix.item(1, 1)
             #d = d.type(torch.complex64)
-            print(d.shape, "shape of d")
+           # print(d.shape, "shape of d")
 
             # t = (1 - self.gamma ** 2) * exp_j_phase
             # r = self.gamma * (1-2*exp_j_phase)
@@ -187,7 +188,7 @@ class Net(torch.nn.Module):
             # xn = torch.stack((xn_real, xn_imag), dim=-1)
 
             xp_real = (a[..., 0] * tempf[..., 0] - a[..., 1]* tempf[..., 1]) + (b[..., 0] * tempr[..., 0] - b[..., 1] * tempr[..., 1])
-            print(xp_real.shape, "shape of xp_real")
+            #print(xp_real.shape, "shape of xp_real")
             
             xp_imag = (a[..., 0]* tempf[..., 1] + a[..., 1] * tempf[..., 0]) + (b[..., 0] * tempr[..., 1] + b[..., 1] * tempr[..., 0])
 
@@ -196,13 +197,13 @@ class Net(torch.nn.Module):
 
             xp = torch.stack((xp_real, xp_imag), dim=-1)
             
-            print(xp.shape, "shape of xp")
+            #print(xp.shape, "shape of xp")
             xn = torch.stack((xn_real, xn_imag), dim=-1)
 
             xf,xr = self.last_diffractive_layer(xp,xn)
             #xr = self.last_diffractive_layer(xn)
             
-            print(xf.shape, "shape of xf")
+            #print(xf.shape, "shape of xf")
 
             return xf, xr
         # x_abs (batch, 200, 200)
@@ -212,27 +213,27 @@ class Net(torch.nn.Module):
         a, b = self.model(torch.ones((self.size, self.size,2)), torch.zeros((self.size, self.size,2)))
         c, d = self.model(torch.zeros((self.size, self.size,2)), torch.ones((self.size, self.size,2)))
 
-        print(a.shape, "shape of a in forward")
-        print(b.shape, "shape of b in forward")
-        print(c.shape, "shape of c in forward")
-        print(d.shape, "shape of d in forward")
+        #print(a.shape, "shape of a in forward")
+        #print(b.shape, "shape of b in forward")
+        #print(c.shape, "shape of c in forward")
+        #print(d.shape, "shape of d in forward")
      
     
         #output=a*input-bc/d*input
         
         b_c=b*c
-        print(b_c.shape, "shape of b_c in forward")
+        #print(b_c.shape, "shape of b_c in forward")
         
         di_v=torch.div(b_c,d)
-        print(di_v.shape, "shape of di_v in forward")
+        #print(di_v.shape, "shape of di_v in forward")
         
         fin=a-di_v
-        print(fin.shape, "shape of fin in forward")
+        #print(fin.shape, "shape of fin in forward")
         
         yf=fin*xf
 
         #yf = torch.matmul(a, xf) - torch.matmul(torch.div(torch.matmul(b, c), d), xf)
-        print(yf.shape, "shape of yf")
+        #print(yf.shape, "shape of yf")
 
         yf_abs = torch.sqrt(yf[..., 0] * yf[..., 0] + yf[..., 1] * yf[..., 1])
 
