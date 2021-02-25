@@ -133,7 +133,10 @@ class Net(torch.nn.Module):
 
             exp_jp_phase = torch.stack((torch.cos(self.phase[index]), torch.sin(self.phase[index])), dim=-1)
             exp_jn_phase = torch.stack((torch.cos(self.phase[index]), -torch.sin(self.phase[index])), dim=-1)
-            print(exp_jn_phase.shape, "shape of exp_phase")
+            exp_jp_phase = tensor.numpy(exp_jp_phase)
+            exp_jn_phase = tensor.numpy(exp_jn_phase)
+            
+            #print(exp_jn_phase.shape, "shape of exp_phase")
 
             x = np.divide(1, t)
             y = np.divide(r, t)
