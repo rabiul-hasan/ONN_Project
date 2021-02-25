@@ -212,12 +212,23 @@ class Net(torch.nn.Module):
         a, b = self.model(torch.ones((self.size, self.size, 2)), torch.zeros((self.size, self.size, 2)))
         c, d = self.model(torch.zeros((self.size, self.size, 2)), torch.ones((self.size, self.size, 2)))
 
-        print(a.shape, "shape of a in forward")
-        print(b.shape, "shape of b in forward")
+        
+     
         # a, b = self.model(torch.ones((200, 200, 2)), torch.zeros((200, 200, 2)))
         # c, d = self.model(torch.zeros((200, 200, 2, 2)), torch.ones((200, 200, 2)))
+        
+        b_c=torch.matmul(b,c)
+        print(b_c.shape, "shape of b_c in forward")
+        
+        di_v=torch.div(b_c,d)
+        print(di_v.shape, "shape of di_v in forward")
+        
+        fin=a-di_v
+        print(fin.shape, "shape of fin in forward")
+        
+        yf=torch.matmul(fin,xf)
 
-        yf = torch.matmul(a, xf) - torch.matmul(torch.div(torch.matmul(b, c), d), xf)
+        #yf = torch.matmul(a, xf) - torch.matmul(torch.div(torch.matmul(b, c), d), xf)
         print(yf.shape, "shape of yf")
 
         yf_abs = torch.sqrt(yf[..., 0] * yf[..., 0] + yf[..., 1] * yf[..., 1])
