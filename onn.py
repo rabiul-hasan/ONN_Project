@@ -212,7 +212,10 @@ class Net(torch.nn.Module):
         a, b = self.model(torch.ones((self.size, self.size, 2)), torch.zeros((self.size, self.size, 2)))
         c, d = self.model(torch.zeros((self.size, self.size, 2)), torch.ones((self.size, self.size, 2)))
 
-        
+        print(a.shape, "shape of a in forward")
+        print(b.shape, "shape of b in forward")
+        print(c.shape, "shape of c in forward")
+        print(d.shape, "shape of d in forward")
      
         # a, b = self.model(torch.ones((200, 200, 2)), torch.zeros((200, 200, 2)))
         # c, d = self.model(torch.zeros((200, 200, 2, 2)), torch.ones((200, 200, 2)))
