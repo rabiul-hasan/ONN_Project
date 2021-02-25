@@ -220,7 +220,7 @@ class Net(torch.nn.Module):
         # a, b = self.model(torch.ones((200, 200, 2)), torch.zeros((200, 200, 2)))
         # c, d = self.model(torch.zeros((200, 200, 2, 2)), torch.ones((200, 200, 2)))
         
-        b_c=torch.mm(b,c)
+        b_c=b@c
         print(b_c.shape, "shape of b_c in forward")
         
         di_v=torch.div(b_c,d)
