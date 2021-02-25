@@ -209,8 +209,8 @@ class Net(torch.nn.Module):
 
     def forward(self, xf):
 
-        a, b = self.model(torch.ones((self.size, self.size)), torch.zeros((self.size, self.size)))
-        c, d = self.model(torch.zeros((self.size, self.size)), torch.ones((self.size, self.size)))
+        a, b = self.model(torch.ones((self.size, self.size,2)), torch.zeros((self.size, self.size,2)))
+        c, d = self.model(torch.zeros((self.size, self.size,2)), torch.ones((self.size, self.size,2)))
 
         print(a.shape, "shape of a in forward")
         print(b.shape, "shape of b in forward")
@@ -218,8 +218,9 @@ class Net(torch.nn.Module):
         print(d.shape, "shape of d in forward")
      
     
+        #output=a*input-bc/d*input
         
-        b_c=b@c
+        b_c=torch.matmul(b,c).size()
         print(b_c.shape, "shape of b_c in forward")
         
         di_v=torch.div(b_c,d)
