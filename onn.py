@@ -151,7 +151,6 @@ class Net(torch.nn.Module):
 
             t11 = exp_jn_phase
             t12 = 0
-            print(t12.shape, "shape of t12")
             t21 = 0
             t22 = exp_jp_phase
             matrix_m = np.array([[t11, t12], [t21, t22]])  # Transfer matrix associated to the layer between interfaces
