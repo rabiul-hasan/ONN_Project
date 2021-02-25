@@ -143,14 +143,16 @@ class Net(torch.nn.Module):
             matrix_r = np.array([[x, y], [w, z]])  # Transfer matrix associated with starting interface
 
             e = np.divide(1, t)
+            print(e.shape, "shape of e")
             f = np.divide(r, t)
             g = np.divide(r, t)
             h = np.divide(1, t)
             matrix_t = np.array([[e, f], [g, h]])  # Transfer matrix associated with end interface
 
             t11 = exp_jn_phase
-            t12 = np.zeros((200,200))
-            t21 = np.zeros((200,200))
+            t12 = 0
+            print(t12.shape, "shape of t12")
+            t21 = 0
             t22 = exp_jp_phase
             matrix_m = np.array([[t11, t12], [t21, t22]])  # Transfer matrix associated to the layer between interfaces
 
