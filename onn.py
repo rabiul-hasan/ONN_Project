@@ -157,8 +157,8 @@ class Net(torch.nn.Module):
             #atrix_t = np.array([[e, f], [g, h]])  # Transfer matrix associated with end interface
 
             t11 = exp_jn_phase
-            t12 = torch.zeros((self.size, self.size,2))
-            t21 = torch.zeros((self.size, self.size,2))
+            t12 = torch.zeros((self.size, self.size))
+            t21 = torch.zeros((self.size, self.size))
             t22 = exp_jp_phase
             matrix_m = torch.tensor ([[t11,t12],[t21,t22]])
             
