@@ -138,27 +138,33 @@ class Net(torch.nn.Module):
             
             #print(exp_jn_phase.shape, "shape of exp_phase")
 
-            x = np.divide(1, t)
-            y = np.divide(r, t)
-            w = np.divide(r, t)
+            x = torch.div(1, t)
+            y = torch.div(r, t)
+            w = torch.div(r, t)
             print(w.shape, "shape of w")
-            z = np.divide(1, t)
-            matrix_r = np.array([[x, y], [w, z]])  # Transfer matrix associated with starting interface
+            z = torch.div(1, t)
+            matrix_r = torch.tensor ([[x,y],[w,z]])
+            
+            #atrix_r = np.array([[x, y], [w, z]])  # Transfer matrix associated with starting interface
 
-            e = np.divide(1, t)
+            e = torch.div(1, t)
             print(e.shape, "shape of e")
-            f = np.divide(r, t)
-            g = np.divide(r, t)
-            h = np.divide(1, t)
-            matrix_t = np.array([[e, f], [g, h]])  # Transfer matrix associated with end interface
+            f = torch.div(r, t)
+            g = torch.div(r, t)
+            h = torch.div(1, t)
+            matrix_t = torch.tensor ([[e,f],[g,h]])
+            
+            #atrix_t = np.array([[e, f], [g, h]])  # Transfer matrix associated with end interface
 
             t11 = exp_jn_phase
             t12 = 0
             t21 = 0
             t22 = exp_jp_phase
-            matrix_m = np.array([[t11, t12], [t21, t22]])  # Transfer matrix associated to the layer between interfaces
+            matrix_m = torch.tensor ([[t11,t12],[t21,t22]])
+            
+            #atrix_m = np.array([[t11, t12], [t21, t22]])  # Transfer matrix associated to the layer between interfaces
 
-            t_matrix = multi_dot([matrix_r, matrix_m, matrix_t])
+            t_matrix = matrix_r@matrix_m@matrix_t
             #t_matrix = torch.from_numpy(t_matrix)
 
             a = t_matrix.item(0, 0)
