@@ -82,9 +82,7 @@ class Net(torch.nn.Module):
         self.ns = 1.5
         self.size = 200
 
-        self.phase = [
-            torch.nn.Parameter(torch.from_numpy(2 * np.pi * np.random.random(size=(200, 200)).astype('float32'))) for _
-            in range(num_layers)]
+        self.phase = [torch.nn.Parameter(torch.from_numpy(2 * np.pi * np.random.random(size=(200, 200)).astype('float32'))) for _in range(num_layers)]
 
         for i in range(num_layers):
             self.register_parameter("phase" + "_" + str(i), self.phase[i])
@@ -95,22 +93,6 @@ class Net(torch.nn.Module):
 
         # self.sofmax = torch.nn.Softmax(dim=-1)
         self.softmax = torch.nn.LogSoftmax(dim=-1)
-
-    # def R_interface(self, na, ns):
-    # R = (self.ns - self.na) / (self.ns + self.na)  # reflection coefficient
-    #  return R
-
-    # def T_interface(self, na, ns):
-    # T = (2 * self. na) / (self. ns + self. na)  # transmission coefficient
-    # return T
-
-    # def In_medium(self, num_layers=2):
-    # self.phase = [torch.nn.Parameter(torch.from_numpy(2 * np.pi * np.random.random(size=(200, 200)).astype('float32'))) for _ in range(num_layers)]
-    # t11 = np.exp(-1j * phase)
-    # t12 = 0
-    # t21 = 0
-    # t22 = np.exp(+1j * phase)
-    # matrix_m = np.array([[t11, t12], [t21, t22]])
 
     def model(self, xf, xr):
         # x (batch, 200, 200, 2)
@@ -141,25 +123,27 @@ class Net(torch.nn.Module):
             x = torch.div(1, t)
             y = torch.div(r, t)
             w = torch.div(r, t)
-            print(w.shape, "shape of w")
             z = torch.div(1, t)
+            print(w.shape, "shape of w")
+            
             matrix_r = torch.tensor ([[x,y],[w,z]])
             
             #atrix_r = np.array([[x, y], [w, z]])  # Transfer matrix associated with starting interface
 
             e = torch.div(1, t)
-            print(e.shape, "shape of e")
             f = torch.div(r, t)
             g = torch.div(r, t)
             h = torch.div(1, t)
+            print(e.shape, "shape of e")
             matrix_t = torch.tensor ([[e,f],[g,h]])
             
             #atrix_t = np.array([[e, f], [g, h]])  # Transfer matrix associated with end interface
-
-            t11 = exp_jn_phase
-            t12 = torch.zeros((self.size, self.size))
-            t21 = torch.zeros((self.size, self.size))
-            t22 = exp_jp_phase
+            for i, j in exp_jn_phase,exp_jp_phase
+            
+                t11 = exp_jn_phase[i,j]
+                t12 = 0 #torch.zeros((self.size, self.size))
+                t21 = 0 #torch.zeros((self.size, self.size))
+                t22 = exp_jp_phase[i,j]
             matrix_m = torch.tensor ([[t11,t12],[t21,t22]])
             
             #atrix_m = np.array([[t11, t12], [t21, t22]])  # Transfer matrix associated to the layer between interfaces
@@ -189,13 +173,6 @@ class Net(torch.nn.Module):
             # b = np.divide(r, t)
             # c = np.divide(numpy.transpose(r), numpy.transpose(t))
             # d = np.linalg.inv(t)
-
-            # xp_real = tempf[..., 0] - tempf[..., 1]
-            # xp_imag = tempf[..., 0] + tempf[..., 1]
-            # xn_real = tempr[..., 0] - tempr[..., 1]
-            # xn_imag = tempr[..., 0] + tempr[..., 1]
-            # xp = torch.stack((xp_real, xp_imag), dim=-1)
-            # xn = torch.stack((xn_real, xn_imag), dim=-1)
 
             xp_real = (a[..., 0] * tempf[..., 0] - a[..., 1]* tempf[..., 1]) + (b[..., 0] * tempr[..., 0] - b[..., 1] * tempr[..., 1])
             #print(xp_real.shape, "shape of xp_real")
