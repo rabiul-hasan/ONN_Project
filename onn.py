@@ -120,36 +120,38 @@ class Net(torch.nn.Module):
             
             #print(exp_jn_phase.shape, "shape of exp_phase")
 
-            x = torch.div(1, t)
-            y = torch.div(r, t)
-            w = torch.div(r, t)
-            z = torch.div(1, t)
-            print(w.shape, "shape of w")
+            for i, j in exp_jn_phase,exp_jp_phase:
+                x = torch.div(1, t)
+                y = torch.div(r, t)
+                w = torch.div(r, t)
+                z = torch.div(1, t)
+                print(w.shape, "shape of w")
             
-            matrix_r = torch.tensor ([[x,y],[w,z]])
+                matrix_r = torch.tensor ([[x,y],[w,z]])
             
             #atrix_r = np.array([[x, y], [w, z]])  # Transfer matrix associated with starting interface
 
-            e = torch.div(1, t)
-            f = torch.div(r, t)
-            g = torch.div(r, t)
-            h = torch.div(1, t)
-            print(e.shape, "shape of e")
-            matrix_t = torch.tensor ([[e,f],[g,h]])
-            
+               e = torch.div(1, t)
+               f = torch.div(r, t)
+               g = torch.div(r, t)
+               h = torch.div(1, t)
+               print(e.shape, "shape of e")
+               matrix_t = torch.tensor ([[e,f],[g,h]])
+                
             #atrix_t = np.array([[e, f], [g, h]])  # Transfer matrix associated with end interface
-            for i, j in exp_jn_phase,exp_jp_phase:
+            
                 t11 = exp_jn_phase[i,j]
                 t12 = 0 #torch.zeros((self.size, self.size))
                 t21 = 0 #torch.zeros((self.size, self.size))
                 t22 = exp_jp_phase[i,j]
                 matrix_m = torch.tensor ([[t11,t12],[t21,t22]])
-                return matrix_m
+                t_matrix = matrix_r@matrix_m@matrix_t
+                 #t_matrix = torch.from_numpy(t_matrix)
+                return T_matrix
             
             #atrix_m = np.array([[t11, t12], [t21, t22]])  # Transfer matrix associated to the layer between interfaces
 
-            t_matrix = matrix_r@matrix_m@matrix_t
-            #t_matrix = torch.from_numpy(t_matrix)
+            
 
             a = t_matrix.item(0, 0)
             #a = a.type(torch.complex64)
