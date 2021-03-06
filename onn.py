@@ -81,8 +81,9 @@ class Net(torch.nn.Module):
         self.na = 1
         self.ns = 1.5
         self.size = 200
+        self.phase = [torch.nn.Parameter(torch.from_numpy( 2 * np.pi * torch.nn.init.xavier_uniform_(torch.empty(200,200)).numpy() ), requires_grad=True) for _ in range(num_layers)]
 
-        self.phase = [torch.nn.Parameter(torch.from_numpy(2 * np.pi * np.random.random(size=(200, 200)).astype('float32'))) for _in range(num_layers)]
+       # self.phase = [torch.nn.Parameter(torch.from_numpy(2 * np.pi * np.random.random(size=(200, 200)).astype('float32'))) for _in range(num_layers)]
 
         for i in range(num_layers):
             self.register_parameter("phase" + "_" + str(i), self.phase[i])
