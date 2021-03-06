@@ -132,12 +132,12 @@ class Net(torch.nn.Module):
             
             #atrix_r = np.array([[x, y], [w, z]])  # Transfer matrix associated with starting interface
 
-               e = torch.div(1, t)
-               f = torch.div(r, t)
-               g = torch.div(r, t)
-               h = torch.div(1, t)
-               print(e.shape, "shape of e")
-               matrix_t = torch.tensor ([[e,f],[g,h]])
+                e = torch.div(1, t)
+                f = torch.div(r, t)
+                g = torch.div(r, t)
+                h = torch.div(1, t)
+                print(e.shape, "shape of e")
+                matrix_t = torch.tensor ([[e,f],[g,h]])
                 
             #atrix_t = np.array([[e, f], [g, h]])  # Transfer matrix associated with end interface
             
