@@ -121,7 +121,7 @@ class Net(torch.nn.Module):
             
             #print(exp_jn_phase.shape, "shape of exp_phase")
 
-            for i, j in range(1, self.size):
+            for i, j in range(1, 200):
                 x = torch.div(1, t)
                 y = torch.div(r, t)
                 w = torch.div(r, t)
