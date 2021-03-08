@@ -158,10 +158,11 @@ class Net(torch.nn.Module):
             #atrix_m = np.array([[t11, t12], [t21, t22]])  # Transfer matrix associated to the layer between interfaces
 
             t_matrix = torch.from_numpy(t_matrix)
+            print(t_matrix.shape, "shape of t_matrix")
 
             a = t_matrix.item(0, 0)
             #a = a.type(torch.complex64)
-            #print(a.shape, "shape of a")
+            print(a.shape, "shape of a")
 
             b = t_matrix.item(0, 1)
             #b = b.type(torch.complex64)
@@ -208,8 +209,8 @@ class Net(torch.nn.Module):
         a, b = self.model(torch.ones((self.size, self.size,2)), torch.zeros((self.size, self.size,2)))
         c, d = self.model(torch.zeros((self.size, self.size,2)), torch.ones((self.size, self.size,2)))
 
-        #print(a.shape, "shape of a in forward")
-        #print(b.shape, "shape of b in forward")
+        print(a.shape, "shape of a in forward")
+        print(b.shape, "shape of b in forward")
         #print(c.shape, "shape of c in forward")
         #print(d.shape, "shape of d in forward")
      
@@ -217,7 +218,7 @@ class Net(torch.nn.Module):
         #output=a*input-bc/d*input
         
         b_c=b*c
-        #print(b_c.shape, "shape of b_c in forward")
+        print(b_c.shape, "shape of b_c in forward")
         
         di_v=torch.div(b_c,d)
         #print(di_v.shape, "shape of di_v in forward")
