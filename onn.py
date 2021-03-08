@@ -217,7 +217,7 @@ class Net(torch.nn.Module):
     
         #output=a*input-bc/d*input
         
-        b_c=b*c
+        b_c=b@c
         print(b_c.shape, "shape of b_c in forward")
         
         di_v=torch.div(b_c,d)
@@ -226,7 +226,7 @@ class Net(torch.nn.Module):
         fin=a-di_v
         #print(fin.shape, "shape of fin in forward")
         
-        yf=fin*xf
+        yf=fin@xf
 
         #yf = torch.matmul(a, xf) - torch.matmul(torch.div(torch.matmul(b, c), d), xf)
         #print(yf.shape, "shape of yf")
