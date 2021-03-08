@@ -136,8 +136,8 @@ class Net(torch.nn.Module):
             #atrix_r = np.array([[x, y], [w, z]])  
 
                     e = np.divide(1, t)
-                    f = np.divide(r, t)
-                    g = np.divide(r, t)
+                    f = np.divide(-r, t)
+                    g = np.divide(-r, t)
                     h = np.divide(1, t)
                     #print(e.shape, "shape of e")
                     #matrix_t = torch.tensor ([[e,f],[g,h]])
