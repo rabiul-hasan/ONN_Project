@@ -101,7 +101,7 @@ class Net(torch.nn.Module):
         self.ns = 1.5
 
         for index, layer in enumerate(self.diffractive_layers):
-            (tempf, tempr) = layer(xf, xr)
+            tempf, tempr = layer(xf, xr)
             #print('*'*100)
             #print(tempf.shape,"tempf in the model")
             #print('*' *100)
