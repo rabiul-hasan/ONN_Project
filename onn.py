@@ -47,6 +47,7 @@ class DiffractiveLayer(torch.nn.Module):
 
     def forward(self, wavesf, wavesr):
         # waves (batch, 200, 200, 2)
+        print(wavesf)
         tempf = torch.fft(wavesf, signal_ndim=2)
         tempr = torch.fft(wavesr, signal_ndim=2)
         
