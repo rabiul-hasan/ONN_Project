@@ -47,9 +47,9 @@ class DiffractiveLayer(torch.nn.Module):
 
     def forward(self, wavesf, wavesr):
         # waves (batch, 200, 200, 2)
-        print(wavesf.shape)
+        print(wavesf.shape,"wavesf in the forward")
         tempf = torch.fft(wavesf, signal_ndim=2)
-        print(tempf.shape)
+        print(tempf.shape,"tempf in the forward")
         tempr = torch.fft(wavesr, signal_ndim=2)
         
         #print(tempf.shape, "shape of the tempf in first forward")
