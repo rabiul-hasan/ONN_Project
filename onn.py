@@ -67,8 +67,9 @@ class DiffractiveLayer(torch.nn.Module):
 
         # k_space = torch.stack((kf_space, kr_space), dim=-1)
         # angular_spectrum (batch, 200, 200, 2)
-        angular_spectrumf = torch.ifft(kf_space, signal_ndim=2)
-        angular_spectrumr = torch.ifft(kr_space, signal_ndim=2)
+        angular_spectrumf = torch.fft.ifftn(kf_space)
+        angular_spectrumr = torch.fft.ifftn(kr_space)
+        #angular_spectrumr = torch.ifft(kr_space, signal_ndim=2)
         return angular_spectrumf, angular_spectrumr
 
 
