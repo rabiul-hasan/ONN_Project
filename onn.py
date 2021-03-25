@@ -105,7 +105,7 @@ class Net(torch.nn.Module):
         for index, layer in enumerate(self.diffractive_layers):
             tempf, tempr = layer(xf, xr)
             #print('*'*100)
-            #print(tempf.shape,"tempf in the model")
+            print(tempf.shape,"tempf in the model")
             #print('*' *100)
             #print(tempf.shape, tempf.item())
 
@@ -186,7 +186,7 @@ class Net(torch.nn.Module):
             # d = np.linalg.inv(t)
 
             xp_real = (a[..., 0] * tempf[..., 0] - a[..., 1]* tempf[..., 1]) + (b[..., 0] * tempr[..., 0] - b[..., 1] * tempr[..., 1])
-            #print(xp_real.shape, "shape of xp_real")
+            print(xp_real.shape, "shape of xp_real")
             
             xp_imag = (a[..., 0]* tempf[..., 1] + a[..., 1] * tempf[..., 0]) + (b[..., 0] * tempr[..., 1] + b[..., 1] * tempr[..., 0])
 
@@ -195,7 +195,7 @@ class Net(torch.nn.Module):
 
             xp = torch.stack((xp_real, xp_imag), dim=-1)
             
-            #print(xp.shape, "shape of xp")
+            print(xp.shape, "shape of xp")
             xn = torch.stack((xn_real, xn_imag), dim=-1)
 
             xf,xr = self.last_diffractive_layer(xp,xn)
@@ -223,7 +223,7 @@ class Net(torch.nn.Module):
         print(b_c.shape, "shape of b_c in forward")
         
         di_v=torch.div(b_c,d)
-        #print(di_v.shape, "shape of di_v in forward")
+        print(di_v.shape, "shape of di_v in forward")
         
         fin=a-di_v
         #print(fin.shape, "shape of fin in forward")
@@ -231,7 +231,7 @@ class Net(torch.nn.Module):
         yf=fin@xf
 
         #yf = torch.matmul(a, xf) - torch.matmul(torch.div(torch.matmul(b, c), d), xf)
-        #print(yf.shape, "shape of yf")
+        print(yf.shape, "shape of yf")
 
         yf_abs = torch.sqrt(yf[..., 0] * yf[..., 0] + yf[..., 1] * yf[..., 1])
 
