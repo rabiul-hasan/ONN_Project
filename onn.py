@@ -34,7 +34,7 @@ class DiffractiveLayer(torch.nn.Module):
         # h (200, 200)
         # forward propagation
         hf = np.fft.fftshift(
-            np.exp(1.0j * self.wn * self.distance) * np.exp(-1.0j * self.wl * np.pi * self.distance * self.phi))
+            np.exp(1.0j * self.wn * self.distance) * np.exp(-1.0j * self.wl * np.pi * self.distance * self.phi))  #Shift the zero-frequency component to the center of the spectrum
         # reverse propagation
         hr = np.fft.fftshift(
             np.exp(1.0j * self.wn * self.distance) * np.exp(+1.0j * self.wl * np.pi * self.distance * self.phi))
@@ -212,7 +212,9 @@ class Net(torch.nn.Module):
 
         a, b = self.model(torch.ones((self.size, self.size,2)), torch.zeros((self.size, self.size,2)))
         c, d = self.model(torch.zeros((self.size, self.size,2)), torch.ones((self.size, self.size,2)))
-
+        a, b = self.model(torch.ones((200, 200,2)), torch.zeros((200, 200,2)))
+        c, d = self.model(torch.zeros((200, 200,2)), torch.ones((200, 200,2)))
+         
         print(a.shape, "shape of a in forward")
         print(b.shape, "shape of b in forward")
         print(c.shape, "shape of c in forward")
