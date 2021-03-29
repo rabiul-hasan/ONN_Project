@@ -210,8 +210,8 @@ class Net(torch.nn.Module):
 
     def forward(self, xf):
 
-        a, b = self.model(torch.ones((self.size, self.size,2)), torch.zeros((self.size, self.size,2)))
-        c, d = self.model(torch.zeros((self.size, self.size,2)), torch.ones((self.size, self.size,2)))
+       # a, b = self.model(torch.ones((self.size, self.size,2)), torch.zeros((self.size, self.size,2)))
+       # c, d = self.model(torch.zeros((self.size, self.size,2)), torch.ones((self.size, self.size,2)))
         a, b = self.model(torch.ones((200, 200,2)), torch.zeros((200, 200,2)))
         c, d = self.model(torch.zeros((200, 200,2)), torch.ones((200, 200,2)))
          
