@@ -136,7 +136,7 @@ class Net(torch.nn.Module):
             
             #print(xf.shape, "shape of xf")
 
-         return xf, xr
+            return xf, xr
         # x_abs (batch, 200, 200)
 
     def forward(self, xf):
