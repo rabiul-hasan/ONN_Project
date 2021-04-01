@@ -114,10 +114,10 @@ class Net(torch.nn.Module):
             exp_jp_phase = torch.stack((torch.cos(self.phase[index]), torch.sin(self.phase[index])), dim=-1)
             exp_jn_phase = torch.stack((torch.cos(self.phase[index]), -torch.sin(self.phase[index])), dim=-1)
            
-            #print(exp_jn_phase.shape, "shape of exp_phase")
+            print(exp_jn_phase.shape, "shape of exp_phase")
 
 
-            xp_real = tempf[..., 0] * exp_jp_phase[..., 0] - tempf[..., 1] * exp_jp_phase[..., 1]
+            xp_real = tempf[..., 0] * exp_jp_phase[..., 0] + tempf[..., 1] * exp_jp_phase[..., 1]
 
             print(xp_real.shape, "shape of xp_real")
             
@@ -136,7 +136,7 @@ class Net(torch.nn.Module):
             
             #print(xf.shape, "shape of xf")
 
-            return xf, xr
+         return xf, xr
         # x_abs (batch, 200, 200)
 
     def forward(self, xf):
