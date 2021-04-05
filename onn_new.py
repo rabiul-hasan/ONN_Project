@@ -133,7 +133,7 @@ class Net(torch.nn.Module):
 
             xf,xr = self.last_diffractive_layer(xp,xn)
             #xr = self.last_diffractive_layer(xn)
-            
+            print(xf,"xf tensor in model")
             print(xf.shape, "shape of xf")
 
             return xf, xr
