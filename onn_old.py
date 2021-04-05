@@ -76,7 +76,8 @@ class DiffractiveLayer(torch.nn.Module):
 
         # waves (batch, 200, 200, 2)
 
-        temp = torch.fft.fftn(waves, signal_ndim=2)
+        #temp = torch.fft.fftn(waves, signal_ndim=2)
+        temp = torch.fft.fftn(waves)
 
         k_pace_real = self.h[..., 0] * temp[..., 0] - self.h[..., 1] * temp[..., 1]
 
@@ -86,7 +87,8 @@ class DiffractiveLayer(torch.nn.Module):
 
         # angular_spectrum (batch, 200, 200, 2)
 
-        angular_spectrum = (torch.fft.ifftn(k_space, signal_ndim=2))
+        #angular_spectrum = (torch.fft.ifftn(k_space, signal_ndim=2))
+        angular_spectrum = (torch.fft.ifftn(k_space))
 
         return angular_spectrum
 
