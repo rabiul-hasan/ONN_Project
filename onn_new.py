@@ -134,7 +134,7 @@ class Net(torch.nn.Module):
             xf,xr = self.last_diffractive_layer(xp,xn)
             #xr = self.last_diffractive_layer(xn)
             
-            #print(xf.shape, "shape of xf")
+            print(xf.shape, "shape of xf")
 
             return xf, xr
         # x_abs (batch, 200, 200)
