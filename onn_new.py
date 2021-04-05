@@ -148,16 +148,16 @@ class Net(torch.nn.Module):
         print(b.shape, "shape of b in forward")
         print(c.shape, "shape of c in forward")
         print(d.shape, "shape of d in forward")
-        a=torch.flatten(a)
-        b=torch.flatten(b)
-        c=torch.flatten(c)
-        d=torch.flatten(d)
+        #a=torch.flatten(a)
+        #b=torch.flatten(b)
+        #c=torch.flatten(c)
+        #d=torch.flatten(d)
      
     
         #output=a*input-bc/d*input
         
         #b_c=torch.matmul(b, c)
-        b_c=b @ c
+        b_c=b * c
         print(b_c.shape, "shape of b_c in forward")
         
         di_v=torch.div(b_c,d)
@@ -170,7 +170,7 @@ class Net(torch.nn.Module):
         #print(fin.shape, "shape of fin in forward after reshaping")
         xf=torch.flatten(xf)
         print(xf," xf tensor")
-        yf=fin@xf
+        yf=fin*xf
 
         #yf = torch.matmul(a, xf) - torch.matmul(torch.div(torch.matmul(b, c), d), xf)
         print(yf.shape, "shape of yf")
