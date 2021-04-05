@@ -124,7 +124,7 @@ class Net(torch.nn.Module):
             exp_jp_phase = exp_jp_phase.detach().numpy()
             exp_jn_phase = exp_jn_phase.detach().numpy()
             
-            #print(exp_jn_phase.shape, "shape of exp_phase")
+            print(exp_jn_phase.shape, "shape of exp_phase")
 
             for i in range(0, self.size-1):
                 for j in range (0, self.size-1):
@@ -133,11 +133,11 @@ class Net(torch.nn.Module):
                     w = np.divide(r, t)
                     z = np.divide(1, t)
                 
-                    #print(w.shape, "shape of w")
+                    print(w.shape, "shape of w")
             
                     matrix_r = np.array ([[x,y],[w,z]]) # Transfer matrix associated with starting interface
             
-            #atrix_r = np.array([[x, y], [w, z]])  
+            #matrix_r = np.array([[x, y], [w, z]])  
 
                     e = np.divide(1, t)
                     f = np.divide(-r, t)
@@ -219,6 +219,10 @@ class Net(torch.nn.Module):
         print(b.shape, "shape of b in forward")
         print(c.shape, "shape of c in forward")
         print(d.shape, "shape of d in forward")
+        a=torch.flatten(a)
+        b=torch.flatten(b)
+        c=torch.flatten(c)
+        d=torch.flatten(d)
      
     
         #output=a*input-bc/d*input
