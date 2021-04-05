@@ -203,7 +203,7 @@ class Net(torch.nn.Module):
             xf,xr = self.last_diffractive_layer(xp,xn)
             #xr = self.last_diffractive_layer(xn)
             
-            #print(xf.shape, "shape of xf")
+            print(xf.shape, "shape of xf")
 
             return xf, xr
         # x_abs (batch, 200, 200)
@@ -219,10 +219,11 @@ class Net(torch.nn.Module):
         print(b.shape, "shape of b in forward")
         print(c.shape, "shape of c in forward")
         print(d.shape, "shape of d in forward")
-        a=torch.flatten(a)
-        b=torch.flatten(b)
-        c=torch.flatten(c)
-        d=torch.flatten(d)
+        
+        #a=torch.flatten(a)
+        #b=torch.flatten(b)
+        #c=torch.flatten(c)
+        #d=torch.flatten(d)
      
     
         #output=a*input-bc/d*input
