@@ -165,12 +165,15 @@ class Net(torch.nn.Module):
         
         fin=a-di_v
         print(fin.shape, "shape of fin in forward")
-        fin=fin.reshape(200,200,2)
-        print(fin.shape, "shape of fin in forward after reshaping")
+        #fin=fin.reshape(200,200,2)
+        #print(fin.shape, "shape of fin in forward after reshaping")
+        xf=torch.flatten(xf)
         yf=fin@xf
 
         #yf = torch.matmul(a, xf) - torch.matmul(torch.div(torch.matmul(b, c), d), xf)
         print(yf.shape, "shape of yf")
+        yf=yf.reshape(200,200,2)
+        print(yf.shape, "shape of yf in forward after reshaping")
 
         yf_abs = torch.sqrt(yf[..., 0] * yf[..., 0] + yf[..., 1] * yf[..., 1])
 
