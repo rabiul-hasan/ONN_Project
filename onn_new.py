@@ -148,6 +148,10 @@ class Net(torch.nn.Module):
         print(b.shape, "shape of b in forward")
         print(c.shape, "shape of c in forward")
         print(d.shape, "shape of d in forward")
+        a=torch.flatten(a)
+        b=torch.flatten(b)
+        c=torch.flatten(c)
+        d=torch.flatten(d)
      
     
         #output=a*input-bc/d*input
