@@ -131,12 +131,12 @@ class Net(torch.nn.Module):
             print(xp.shape, "shape of xp")
             xn = torch.stack((xn_real, xn_imag), dim=-1)
 
-            xf,xr = self.last_diffractive_layer(xp,xn)
-            #xr = self.last_diffractive_layer(xn)
-            print(xf,"xf tensor in model")
-            print(xf.shape, "shape of xf")
+        xf,xr = self.last_diffractive_layer(xp,xn)
+        #xr = self.last_diffractive_layer(xn)
+        print(xf,"xf tensor in model")
+        print(xf.shape, "shape of xf")
 
-            return xf, xr
+        return xf, xr
         # x_abs (batch, 200, 200)
 
     def forward(self, xf):
