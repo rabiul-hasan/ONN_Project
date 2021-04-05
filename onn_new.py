@@ -178,6 +178,7 @@ class Net(torch.nn.Module):
         print(yf.shape, "shape of yf in forward after reshaping")
 
         yf_abs = torch.sqrt(yf[..., 0] * yf[..., 0] + yf[..., 1] * yf[..., 1])
+        print(yf_abs)
 
         # yr_abs = torch.sqrt(yr[..., 0] * yr[..., 0] + yr[..., 1] * yr[..., 1])
 
