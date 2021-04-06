@@ -190,7 +190,7 @@ class Net(torch.nn.Module):
 
         x = self.last_diffractive_layer(x)
         print(x.shape, "shape of x")
-        print(x)
+        print(x,"x tensor from the last diffractive layer")
 
         # x_abs (batch, 200, 200)
 
@@ -200,7 +200,7 @@ class Net(torch.nn.Module):
 
         #output = (detector_region(x_abs))
         print(output.shape, "shape of output")
-        print(output)
+        print(output,"output tensor")
         
 
 
