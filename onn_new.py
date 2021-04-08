@@ -169,7 +169,7 @@ class Net(torch.nn.Module):
         #fin=fin.reshape(200,200,2)
         #print(fin.shape, "shape of fin in forward after reshaping")
         #xf=torch.flatten(xf)
-        #print(xf," xf tensor")
+        print(xf.shape," shape of xf tensor")
         yf=fin*xf
 
         #yf = torch.matmul(a, xf) - torch.matmul(torch.div(torch.matmul(b, c), d), xf)
