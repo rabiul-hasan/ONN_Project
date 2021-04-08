@@ -179,6 +179,7 @@ class Net(torch.nn.Module):
 
         yf_abs = torch.sqrt(yf[..., 0] * yf[..., 0] + yf[..., 1] * yf[..., 1])
         print(yf_abs,"tensor for yf absolute")
+        print(yf_abs.shape, "shape of yf_abs")
 
         # yr_abs = torch.sqrt(yr[..., 0] * yr[..., 0] + yr[..., 1] * yr[..., 1])
 
