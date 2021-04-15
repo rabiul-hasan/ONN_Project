@@ -7,6 +7,7 @@ import numpy as np
 
 
 def detector_region(x):
+    print(x,"x in the detecor region")
 
     return torch.cat((
 
