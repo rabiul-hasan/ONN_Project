@@ -7,7 +7,7 @@ import numpy as np
 
 
 def detector_region(x):
-    print(x,"x in the detecor region")
+    #print(x,"x in the detecor region")
 
     return torch.cat((
 
@@ -192,16 +192,18 @@ class Net(torch.nn.Module):
 
         x = self.last_diffractive_layer(x)
         print(x.shape, "shape of x")
-        #print(x,"x tensor from the last diffractive layer")
+        print(x,"x tensor from the last diffractive layer")
 
         # x_abs (batch, 200, 200)
 
         x_abs = torch.sqrt(x[..., 0] * x[..., 0] + x[..., 1] * x[..., 1])
         print(x_abs.shape, "shape of x_abs")
+        print(x_abs, "Tensor of x_abs")
+        
         de= detector_region(x_abs)
         print(de.type())
         print(de.shape,"shape of detector region")
-        print(de,"tensor for detector region")
+        #print(de,"tensor for detector region")
         
 
         output = self.softmax(de)
