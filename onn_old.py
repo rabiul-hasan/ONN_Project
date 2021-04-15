@@ -197,7 +197,7 @@ class Net(torch.nn.Module):
 
         x_abs = torch.sqrt(x[..., 0] * x[..., 0] + x[..., 1] * x[..., 1])
         print(x_abs.shape, "shape of x_abs")
-        de= detector_region(x_abs)
+        de= detector_region(x_abs,dtype=torch.float64)
         print(de.shape,"shape of detector region")
         print(de,"tensor for detector region")
 
