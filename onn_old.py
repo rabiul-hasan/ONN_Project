@@ -201,7 +201,7 @@ class Net(torch.nn.Module):
         print(de.shape,"shape of detector region")
         print(de,"tensor for detector region")
 
-        output = self.softmax(detector_region(x_abs))
+        output = self.softmax(de)
 
         #output = (detector_region(x_abs))
         print(output.shape, "shape of output")
