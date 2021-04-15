@@ -191,11 +191,12 @@ class Net(torch.nn.Module):
 
         x = self.last_diffractive_layer(x)
         print(x.shape, "shape of x")
-        print(x,"x tensor from the last diffractive layer")
+        #print(x,"x tensor from the last diffractive layer")
 
         # x_abs (batch, 200, 200)
 
         x_abs = torch.sqrt(x[..., 0] * x[..., 0] + x[..., 1] * x[..., 1])
+        print(x_abs.shape, "shape of x_abs")
 
         output = self.softmax(detector_region(x_abs))
 
