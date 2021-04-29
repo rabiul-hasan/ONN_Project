@@ -83,7 +83,7 @@ class DiffractiveLayer(torch.nn.Module):
 
         # waves (batch, 200, 200, 2)
         print(waves.shape,"Shape of Waves")
-        #print(waves,"Tensor of Waves")
+        print(waves,"Tensor of Waves")
 
         #temp = torch.fft.fftn(waves, signal_ndim=2)
         temp = torch.fft.fftn(waves)
