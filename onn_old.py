@@ -66,6 +66,9 @@ class DiffractiveLayer(torch.nn.Module):
         # h (200, 200)
 
         h = np.fft.fftshift(np.exp(1.0j * self.wn * self.distance) * np.exp(-1.0j * self.wl * np.pi * self.distance * self.phi))
+        print(h.shape,"Shape of h")
+        print(h,"Tensor of h")
+        
 
         # self.h (200, 200, 2)
 
@@ -76,7 +79,8 @@ class DiffractiveLayer(torch.nn.Module):
     def forward(self, waves):
 
         # waves (batch, 200, 200, 2)
-        print(waves,"Tensor of Waves")
+        print(waves.shape,"Shape of Waves")
+        #print(waves,"Tensor of Waves")
 
         #temp = torch.fft.fftn(waves, signal_ndim=2)
         temp = torch.fft.fftn(waves)
