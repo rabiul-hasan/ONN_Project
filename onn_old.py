@@ -87,13 +87,14 @@ class DiffractiveLayer(torch.nn.Module):
 
         #temp = torch.fft.fftn(waves, signal_ndim=2)
         temp = torch.fft.fftn(waves)
+        self.temp= torch.stack(temp.real, temp.imag)
 
-        k_pace_real = self.h[..., 0] * temp[..., 0] - self.h[..., 1] * temp[..., 1]
+        k_pace_real = self.h[..., 0] * self.temp[..., 0] - self.h[..., 1] * self.temp[..., 1]
         print(k_pace_real.shape,"Size of k_pace_real")
         print(k_pace_real,"k_pace_real tensor")
         
 
-        k_space_imag = self.h[..., 0] * temp[..., 1] + self.h[..., 1] * temp[..., 0]
+        k_space_imag = self.h[..., 0] * self.temp[..., 1] + self.h[..., 1] * self.temp[..., 0]
 
         k_space = torch.stack((k_pace_real, k_space_imag), dim=-1)
 
