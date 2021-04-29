@@ -193,7 +193,9 @@ class Net(torch.nn.Module):
             temp = layer(x)
 
             exp_j_phase = torch.stack((torch.cos(self.phase[index]), torch.sin(self.phase[index])), dim=-1)
-
+            print(exp_j_phase.size,"Size of exp_j_phase")
+            print(exp_j_phase,"Tensor of exp_j_phase")
+            
             x_real = temp[..., 0] * exp_j_phase[..., 0] - temp[..., 1] * exp_j_phase[..., 1]
             print(x_real.size,"Size of x_real")
             print(x_real,"Tensor of x_real")
