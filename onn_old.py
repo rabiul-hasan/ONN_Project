@@ -67,12 +67,15 @@ class DiffractiveLayer(torch.nn.Module):
 
         h = np.fft.fftshift(np.exp(1.0j * self.wn * self.distance) * np.exp(-1.0j * self.wl * np.pi * self.distance * self.phi))
         #print(h.shape,"Shape of h")
-        print(h,"Tensor of h")
+        #print(h,"Tensor of h")
         
 
         # self.h (200, 200, 2)
 
         self.h = torch.nn.Parameter(torch.stack((torch.from_numpy(h.real), torch.from_numpy(h.imag)), dim=-1), requires_grad=False)
+        print(self.h,"Tensor of self.h")
+        print(self.h.size,"Size of self.h")
+        
 
 
 
