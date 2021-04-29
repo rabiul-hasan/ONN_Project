@@ -66,7 +66,7 @@ class DiffractiveLayer(torch.nn.Module):
         # h (200, 200)
 
         h = np.fft.fftshift(np.exp(1.0j * self.wn * self.distance) * np.exp(-1.0j * self.wl * np.pi * self.distance * self.phi))
-        print(h.shape,"Shape of h")
+        #print(h.shape,"Shape of h")
         print(h,"Tensor of h")
         
 
@@ -86,6 +86,9 @@ class DiffractiveLayer(torch.nn.Module):
         temp = torch.fft.fftn(waves)
 
         k_pace_real = self.h[..., 0] * temp[..., 0] - self.h[..., 1] * temp[..., 1]
+        print(k_pace_real.shape,"Size of k_pace_real")
+        print(k_pace_real,"k_pace_real tensor")
+        
 
         k_space_imag = self.h[..., 0] * temp[..., 1] + self.h[..., 1] * temp[..., 0]
 
@@ -192,6 +195,9 @@ class Net(torch.nn.Module):
             exp_j_phase = torch.stack((torch.cos(self.phase[index]), torch.sin(self.phase[index])), dim=-1)
 
             x_real = temp[..., 0] * exp_j_phase[..., 0] - temp[..., 1] * exp_j_phase[..., 1]
+            print(x_real.size,"Size of x_real")
+            print(x_real,"Tensor of x_real")
+            
 
             x_imag = temp[..., 0] * exp_j_phase[..., 1] + temp[..., 1] * exp_j_phase[..., 0]
 
