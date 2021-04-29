@@ -76,6 +76,7 @@ class DiffractiveLayer(torch.nn.Module):
     def forward(self, waves):
 
         # waves (batch, 200, 200, 2)
+        print(waves,"Tensor of Waves")
 
         #temp = torch.fft.fftn(waves, signal_ndim=2)
         temp = torch.fft.fftn(waves)
@@ -90,7 +91,7 @@ class DiffractiveLayer(torch.nn.Module):
 
         #angular_spectrum = (torch.fft.ifftn(k_space, signal_ndim=2))
         angular_spectrum = (torch.fft.ifftn(k_space))
-        print(angular_spectrum,"angular spectrum")
+        #print(angular_spectrum,"angular spectrum")
 
         return angular_spectrum
 
