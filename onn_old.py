@@ -183,6 +183,7 @@ class Net(torch.nn.Module):
 
         # x (batch, 200, 200, 2)
         print(x.shape, "shape of x before for loop")
+        print(x, "Tensor of x before for loop")
 
         for index, layer in enumerate(self.diffractive_layers):
 
